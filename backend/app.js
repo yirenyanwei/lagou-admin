@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var positionsRouter = require('./routes/positions')
 
 var cookieSession = require('cookie-session')
 
@@ -30,9 +31,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//添加头部设置
+app.use((req, res, next)=>{
+  res.set('content-type', 'application/json;charset=utf-8')
+  next()
+})
 
 app.use('/test', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/positions', positionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

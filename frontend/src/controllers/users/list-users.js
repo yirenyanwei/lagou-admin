@@ -1,46 +1,29 @@
-import indexTpl from '../../views/index.art'
 import usersTpl from '../../views/users.art'
 import usersListTpl from '../../views/users-list.art'
 import Events from '../../databus/events'
 import Page from '../../databus/page'
 import {pagination} from '../../components/pagination'
 import UsersAdd from './add-uers'
-import { auth as authModel } from '../../models/auth'
 import usersListModel from '../../models/users-list'
 import usersRemoveModel from '../../models/users-remove'
-import signoutModel from '../../models/signout'
+
 //加载template
-const htmlIndex = indexTpl({})
 const htmlUsers = usersTpl({})
 let listData = {}//用户数据
 
-let index = (req, res, next) => {
-    //跳转到用户界面
-    res.render(htmlIndex)
-    resizeWindow()
+let listUser = (req, res, next) => {
     //填充用户列表
-    $('#main-content').html(htmlUsers)
+    // $('#main-content').html(htmlUsers)
+    next()//加到sub节点上
+    res.render(htmlUsers)
     //添加用户
     UsersAdd.loadUsersAdd()
     //添加列表
     _dealUserList()
     //绑定remove
     _removeUser()
-    //登出
-    _signout()
     //注册事件
     _subscribe()
-}
-
-let resizeWindow = function () {
-    //手动触发窗口resize事件
-    if(document.createEvent) {
-        var event = document.createEvent("HTMLEvents");
-        event.initEvent("resize", true, true);
-        window.dispatchEvent(event);
-    } else if(document.createEventObject) {
-        window.fireEvent("onresize");
-    }
 }
 
 function _subscribe(){
@@ -94,28 +77,6 @@ function _removeUser() {
     })
 }
 
-//登出
-function _signout() {
-    $('#users-signout').on('click', function (e) {
-        e.preventDefault()//阻止action
-        signoutModel.signout().then(function () {
-            localStorage.setItem('lg-token', '')//清空token
-            router.go('/signin')
-        })
-    })
-}
-
-let isAuth = (req, res, next) => {
-    authModel().then((ret)=>{
-        if(ret.ret) {
-            router.go('/index', {})
-        }else {
-            router.go('/signin', {})
-        }
-    })
-}
-
 export {
-    index,
-    isAuth,
+    listUser
 }

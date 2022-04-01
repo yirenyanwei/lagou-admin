@@ -20,7 +20,9 @@
     "dev": "npx webpack-dev-server"
   },
   "dependencies": {
+    "file-loader": "^6.2.0",
     "gp21-router": "^1.0.1",
-    "sme-router": "^0.12.8"
+    "sme-router": "^0.12.8",
+    "url-loader": "^4.1.1"
   }
 }

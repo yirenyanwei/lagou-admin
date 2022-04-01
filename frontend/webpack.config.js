@@ -28,12 +28,25 @@ module.exports = {
                     options: {
                         // art-template options (if necessary)
                         // @see https://github.com/aui/art-template
+                        // 是否开启对模板输出语句自动编码功能。为 false 则关闭编码输出功能
+                        escape: false
                     }
                 },
             },
             {
-                test: /\.css$/,
+                test: /\.css$/,//加载css
                 use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.(png|jpg|gif)$/i,//加载图片等文件
+                use: [
+                  {
+                    loader: 'url-loader',
+                    options: {
+                      limit: 8192,//<8k会放到js中
+                    },
+                  },
+                ],
             }
         ]
     },
