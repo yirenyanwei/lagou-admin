@@ -16,6 +16,10 @@ var Users = mongoose.model('Users', usersSchema);
 
 //positions
 var positionsSchema = mongoose.Schema({
+  companyLogo: {
+    type:String,
+    // required: true,//必填
+  },
   companyName: String,
   positionName: String,
   city: String,

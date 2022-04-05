@@ -26,6 +26,9 @@ let index = (req, res, next) => {
     })
     let hash = location.hash.slice(1)
     $(`#sidebar-menu li[to='${hash}']`).addClass('active').siblings().removeClass('active')
+
+    //_connectSocket
+    _connectSocket()
 }
 
 let resizeWindow = function () {
@@ -47,6 +50,17 @@ function _signout() {
             localStorage.setItem('lg-token', '')//清空token
             router.go('/signin')
         })
+    })
+}
+
+//socket
+function _connectSocket() {
+    var socket = io.connect('http://localhost:3000');
+    //收到后端自定义事件
+    socket.on('sendMsg', function(msg){
+        console.log('socket-', msg)
+        let num = $('#icon_email').text()
+        $('#icon_email').text(parseInt(num)+1)
     })
 }
 

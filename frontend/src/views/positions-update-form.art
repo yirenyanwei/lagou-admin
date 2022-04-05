@@ -1,0 +1,25 @@
+<div class="box-body">
+  <div class="form-group">
+    <label for="companyLogo">公司Logo</label>
+    <img src="http://localhost:3000/uploads/{{data.companyLogo}}" style="width: 50px;height: 50px;" alt="">
+    <input type="file" class="form-control" name="companyLogo" id="companyLogo" placeholder="Enter company logo">
+  </div>
+  <div class="form-group">
+    <label for="companyName">公司名称</label>
+    <input type="text" value="{{data.companyName}}" class="form-control" name="companyName" id="companyName" placeholder="Enter company name">
+  </div>
+  <div class="form-group">
+    <label for="positionName">职位名称</label>
+    <input type="text" value="{{data.positionName}}" class="form-control" name="positionName" id="positionName" placeholder="Enter position name" autocomplete>
+  </div>
+  <div class="form-group">
+    <label for="city">城市</label>
+    <input type="text" value="{{data.city}}" class="form-control" name="city" id="city" placeholder="Enter city" autocomplete>
+  </div>
+  <div class="form-group">
+    <label for="salary">期望薪资</label>
+    <input type="text" value="{{data.salary}}" class="form-control" name="salary" id="salary" placeholder="Enter salary" autocomplete>
+  </div>
+  <input type="hidden", name="id" value="{{data._id}}">
+  
+</div>

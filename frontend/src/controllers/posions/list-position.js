@@ -1,6 +1,7 @@
 import positionsTpl from '../../views/positions.art'
 import positionsListTpl from '../../views/positions-list.art'
 import PositionsAdd from './add-position'
+import PositionsUpdate from './update-position'
 import Page from '../../databus/page'
 import {pagination} from '../../components/pagination'
 import positionsListModel from '../../models/positions-list'
@@ -12,6 +13,8 @@ function listPosition(req, res, next) {
     res.render(positionsTpl())
     //添加按钮
     PositionsAdd.loadPositionsAdd()
+    //修改
+    PositionsUpdate.bindPositionUpdate()
     //用户列表
     _dealPositionList()
     //绑定remove
@@ -68,6 +71,8 @@ function _removePosition() {
         })
     })
 }
+
+
 
 export {
     listPosition

@@ -34,6 +34,7 @@
   <div class="box-footer clearfix" id="users-pages">
     
   </div>
+  <div id="position-update-window"></div>
 </div>
 <!-- /.box -->
 

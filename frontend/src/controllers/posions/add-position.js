@@ -13,8 +13,9 @@ function _handleSignup() {
     //处理添加用户
     let btn_close = $('#position-close')
     btn_close.click()//关闭
-    const query = $('#position-form').serialize()
-    positionsAddModel.positionsAdd(query).then((res)=>{
+    // const query = $('#position-form').serialize()
+    // 通过jquery.form发送请求
+    positionsAddModel.positionsAdd().then((res)=>{
         if(res.ret) {
             Page.currentPage = 1
             $('#main-content').trigger(Events.LoadListData)
